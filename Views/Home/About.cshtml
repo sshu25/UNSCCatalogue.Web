@@ -1,5 +1,16 @@
 ﻿@{
     ViewBag.Title = "About";
     ViewBag.Message = "United Nations Space Command";
-    Layout = "~/Views/Shared/_LayoutHeader.cshtml";
+}
+
+@{
+    ViewBag.ListTitle = "Our Principles";
+    ViewBag.Items = new List<string>() { "Per Mare", "Per Terras", "Per Constellatum" };
+}
+
+@section SideBarOptions
+    {
+    <a href="" class="list-group-item text-white" style="background-color:transparent">About Company</a>
+    <a href="" class="list-group-item text-white" style="background-color:transparent">About Founders</a>
+    <a href="" class="list-group-item text-white" style="background-color:transparent">About Team</a>
 }

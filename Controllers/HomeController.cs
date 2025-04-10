@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace UNSCCatalogue.Controllers
+namespace UNSCCatalogue.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -23,12 +23,7 @@ namespace UNSCCatalogue.Controllers
             return View();
         }
 
-        public ActionResult Profile()
-        {
-            return View();
-        }
-
-        public ActionResult Products()
+        public ActionResult Account()
         {
             return View();
         }

@@ -1,16 +1,36 @@
 ﻿@{
     ViewBag.Title = "Products";
     ViewBag.Message = "View offered products";
-    Layout = "~/Views/Shared/_LayoutHeader.cshtml";
 }
 
 <div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Products)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Cost</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
     <div class="row">
         <div class="col-md-6">
             <h2>Categories</h2>
             <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action">Weapons</a>
                 <a href="#" class="list-group-item list-group-item-action">Armour</a>
+                <a href="#" class="list-group-item list-group-item-action">Vehicles</a>
                 <a href="#" class="list-group-item list-group-item-action">Tools</a>
             </div>
         </div>
