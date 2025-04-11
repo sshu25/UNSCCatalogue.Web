@@ -72,3 +72,7 @@ D:\Work\DEV\UNSCCatalogue.Web\obj\Debug\UNSCCatalogue.Web.dll
 D:\Work\DEV\UNSCCatalogue.Web\obj\Debug\UNSCCatalogue.Web.pdb
 D:\Work\DEV\UNSCCatalogue.Web\bin\UNSCCatalogue.Common.dll
 D:\Work\DEV\UNSCCatalogue.Web\bin\UNSCCatalogue.Common.pdb
+D:\Work\DEV\UNSCCatalogue.Web\bin\EntityFramework.dll
+D:\Work\DEV\UNSCCatalogue.Web\bin\EntityFramework.SqlServer.dll
+D:\Work\DEV\UNSCCatalogue.Web\bin\EntityFramework.xml
+D:\Work\DEV\UNSCCatalogue.Web\bin\EntityFramework.SqlServer.xml

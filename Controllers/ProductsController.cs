@@ -12,35 +12,24 @@ namespace UNSCCatalogue.Web.Controllers
     {
         public ActionResult Index()
         {
-            List<Product> products = new List<Product>()
-            {
-                new Product() { ID = 1, Name = "MA5B", Cost = 10000 },
-                new Product() { ID = 2, Name = "D77 Pelican", Cost = 3000000 },
-                new Product() { ID = 3, Name = "MJOLNIR Powered Assault Armor Mark IV", Cost = 2000000000 }
-            };
+            UNSCdbEntities db = new UNSCdbEntities();
+            List<Product> products = db.Products.ToList();
             return View(products);
         }
 
-        public ActionResult Details(int id)
-        {
-            List<Product> products = new List<Product>()
-            {
-                new Product() { ID = 1, Name = "MA5B", Cost = 10000 },
-                new Product() { ID = 2, Name = "D77 Pelican", Cost = 3000000 },
-                new Product() { ID = 3, Name = "MJOLNIR Powered Assault Armor Mark IV", Cost = 2000000000 }
-            };
+        //public ActionResult Details(int id)
+        //{
+        //    Product prod = null;
+        //    foreach (var product in products)
+        //    {
+        //        if (product.ID == id)
+        //        {
+        //            prod = product;
+        //        }
+        //    }
 
-            Product prod = null;
-            foreach (var product in products)
-            {
-                if (product.ID == id)
-                {
-                    prod = product;
-                }
-            }
-
-            return View(prod);
-        }
+        //    return View(prod);
+        //}
 
         public ActionResult Create()
         {

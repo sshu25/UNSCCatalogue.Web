@@ -1,0 +1,18 @@
+﻿@model List<Brand>
+@{
+    ViewBag.Title = Strings.Brands;
+}
+
+<table class="table">
+    <tr>
+        <th>@Strings.ID</th>
+        <th>@Strings.Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
