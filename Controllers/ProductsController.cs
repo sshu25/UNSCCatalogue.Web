@@ -18,8 +18,7 @@ namespace UNSCCatalogue.Web.Controllers
                 new Product() { ID = 2, Name = "D77 Pelican", Cost = 3000000 },
                 new Product() { ID = 3, Name = "MJOLNIR Powered Assault Armor Mark IV", Cost = 2000000000 }
             };
-            ViewBag.Products = products;
-            return View();
+            return View(products);
         }
 
         public ActionResult Details(int id)
@@ -31,37 +30,27 @@ namespace UNSCCatalogue.Web.Controllers
                 new Product() { ID = 3, Name = "MJOLNIR Powered Assault Armor Mark IV", Cost = 2000000000 }
             };
 
+            Product prod = null;
             foreach (var product in products)
             {
                 if (product.ID == id)
                 {
-                    ViewBag.Product = product;
+                    prod = product;
                 }
             }
 
+            return View(prod);
+        }
+
+        public ActionResult Create()
+        {
             return View();
         }
 
-        //public ActionResult GetProductID(string name)
-        //{
-        //    var products = new[]
-        //    {
-        //        new { ID = 1, Name = "MA5B", Cost = 10000 },
-        //        new { ID = 2, Name = "D77 Pelican", Cost = 3000000 },
-        //        new { ID = 3, Name = "MJOLNIR Powered Assault Armor Mark IV", Cost = 2000000000 }
-        //    };
-
-        //    if (string.IsNullOrEmpty(name)) return Content("Product name not recognized.");
-
-        //    foreach (var product in products)
-        //    {
-        //        if (product.Name == name)
-        //        {
-        //            return Content(product.ID.ToString());
-        //        }
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public ActionResult Create(Product product)
+        {
+            return View();
+        }
     }
 }

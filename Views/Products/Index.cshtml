@@ -1,30 +1,32 @@
-﻿@{
-    ViewBag.Title = "Products";
+﻿@model List<Product>
+@{
+    ViewBag.Title = Strings.Products;
     ViewBag.Message = "View offered products";
 }
 
 <div class="container-fluid">
+    <a href="@Url.Action("Create", "Products")">@Strings.Create</a>
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Cost</th>
+                <th>@Strings.ID</th>
+                <th>@Strings.Name</th>
+                <th>@Strings.Cost</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in ViewBag.Products)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.ID</td>
-                    <td>@item.Name</td>
+                    <td><a href="/Products/Details/@item.ID">@item.Name</a></td>
                     <td>@item.Cost</td>
                 </tr>
             }
         </tbody>
     </table>
     
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-6">
             <h2>Categories</h2>
             <div class="list-group list-group-flush">
@@ -42,5 +44,5 @@
                 <a href="#" class="list-group-item list-group-item-action">Traxus Mining Industries</a>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>

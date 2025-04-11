@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = Strings.Create;
+}
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>@Strings.ID</label>
+        <input type="text" class="form-control" id="txtID" placeholder="@Strings.ID" name="ID" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.Name</label>
+        <input type="text" class="form-control" id="txtName" placeholder="@Strings.Name" name="Name" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.Cost</label>
+        <input type="text" class="form-control" id="txtCost" placeholder="@Strings.Cost" name="Cost" />
+    </div>
+    <button class="btn btn-success">@Strings.Submit</button>
+}
