@@ -1,0 +1,33 @@
+﻿@model Account
+@{
+    ViewBag.Title = Strings.Create;
+}
+
+@using (Html.BeginForm("Create", "Accounts", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>@Strings.ID</label>
+        <input type="text" class="form-control" id="txtID" placeholder="@Strings.ID" name="ID" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.Name</label>
+        <input type="text" class="form-control" id="txtName" placeholder="@Strings.Name" name="Name" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.StreetNumber</label>
+        <input type="text" class="form-control" id="txtStreetNumber" placeholder="@Strings.StreetNumber" name="StreetNumber" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.StreetName</label>
+        <input type="text" class="form-control" id="txtStreetName" placeholder="@Strings.StreetName" name="StreetName" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.City</label>
+        <input type="text" class="form-control" id="txtCity" placeholder="@Strings.City" name="City" />
+    </div>
+    <div class="form-group">
+        <label>@Strings.Planet</label>
+        <input type="text" class="form-control" id="txtPlanet" placeholder="@Strings.Planet" name="Planet" />
+    </div>
+    <button class="btn btn-success">@Strings.Submit</button>
+}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using UNSCCatalogue.Web.Models;
 
 namespace UNSCCatalogue.Web
 {
@@ -13,6 +14,7 @@ namespace UNSCCatalogue.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Account), new AddressBinder());
         }
     }
 }
