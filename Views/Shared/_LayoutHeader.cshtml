@@ -39,14 +39,11 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 text-white" style="background-color:#385935; min-height: 1050px; padding: 0px ">
+            @*<div class="col-2 text-white" style="background-color:#385935; min-height: 1050px; padding: 0px ">
                 <div class="list-group">
-                    @*<a href="" class="list-group-item text-white" style="background-color:transparent">Favourites</a>
-                    <a href="" class="list-group-item text-white" style="background-color:transparent">Your Orders</a>
-                    <a href="" class="list-group-item text-white" style="background-color:transparent">Products</a>*@
                     @RenderSection("SideBarOptions", required: false)
                 </div>
-            </div>
+            </div>*@
             <div class="col-10" style="min-height:610px">
                 <h2>@ViewBag.Title</h2>
                 @RenderBody()

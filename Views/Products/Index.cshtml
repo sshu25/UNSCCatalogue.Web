@@ -4,6 +4,11 @@
     ViewBag.Message = "View offered products";
 }
 
+<form class="form-inline" action="/Products/Index">
+    <input type="search" class="form-control mr-1" id="search" name="search" placeholder="@Strings.Search" value="@ViewBag.Search"/>
+    <button type="submit" class="btn btn-primary">@Strings.Search</button>
+</form>
+
 <div class="container-fluid">
     <a href="@Url.Action("Create", "Products")">@Strings.Create</a>
     <table class="table">
