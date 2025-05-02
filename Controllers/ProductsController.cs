@@ -18,12 +18,12 @@ namespace UNSCCatalogue.Web.Controllers
             return View(products);
         }
 
-        //public ActionResult Details(int id)
-        //{
-        //    UNSCdbEntities db = new UNSCdbEntities();
-        //    Product prod = db.Products.Where(x => x.ID == id);
-        //    return View(prod);
-        //}
+        public ActionResult Details(int id)
+        {
+            UNSCdbEntities db = new UNSCdbEntities();
+            Product prod = db.Products.FirstOrDefault(x => x.ID == id);
+            return View(prod);
+        }
 
         public ActionResult Create()
         {
@@ -33,6 +33,10 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            //UNSCdbEntities db = new UNSCdbEntities();
+            //db.Products.Add(product);
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
             return View();
         }
     }

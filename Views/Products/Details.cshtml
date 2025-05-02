@@ -7,16 +7,34 @@
 <table class="table">
     <tbody>
         <tr>
-            <th>ID</th>
+            <th>@Strings.ID</th>
             <td>@Model.ID</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>@Strings.Name</th>
             <td>@Model.Name</td>
         </tr>
         <tr>
-            <th>Cost</th>
-            <td>@Model.Price</td>
+            <th>@Strings.Cost</th>
+            <td>@Model.Price.Value.ToString("C")</td>
+        </tr>
+        <tr>
+            <th>@Strings.DateofPurchase</th>
+            <td>@Model.DateOfPurchase.Value.ToString("d/M/yyyy")</td>
+        </tr>
+        <tr>
+            <th>@Strings.Category</th>
+            <td>@Model.Category.Name</td>
+        </tr>
+        <tr>
+            <th>@Strings.Brand</th>
+            <td>@Model.Brand.Name</td>
+        </tr>
+        <tr>
+            <th>@Strings.AvailabilityStatus</th>
+            <td>@Model.AvailabilityStatus</td>
         </tr>
     </tbody>
 </table>
+
+<a href="/Products/Index">@Strings.Return</a>

@@ -4,13 +4,20 @@
     ViewBag.Message = "View offered products";
 }
 
-<form class="form-inline" action="/Products/Index">
-    <input type="search" class="form-control mr-1" id="search" name="search" placeholder="@Strings.Search" value="@ViewBag.Search"/>
-    <button type="submit" class="btn btn-primary">@Strings.Search</button>
+<div class="btn-group">
+    @Html.ActionLink(Strings.Create, "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+<form class="row g-3" action="/Products/Index">
+    <div class="col-auto">
+        <input type="search" class="form-control" id="search" name="search" placeholder="@Strings.Search" value="@ViewBag.Search" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">@Strings.Search</button>
+    </div>
 </form>
 
 <div class="container-fluid">
-    <a href="@Url.Action("Create", "Products")">@Strings.Create</a>
     <table class="table">
         <thead>
             <tr>
@@ -18,9 +25,9 @@
                 <th>@Strings.Name</th>
                 <th>@Strings.Price</th>
                 <th>@Strings.DateofPurchase</th>
-                <th>@Strings.AvailabilityStatus</th>
                 <th>@Strings.Category</th>
                 <th>@Strings.Brand</th>
+                <th>@Strings.AvailabilityStatus</th>
             </tr>
         </thead>
         <tbody>
@@ -31,9 +38,9 @@
                     <td><a href="/Products/Details/@item.ID">@item.Name</a></td>
                     <td>@item.Price.Value.ToString("C")</td>
                     <td>@item.DateOfPurchase.Value.ToString("d/M/yyyy")</td>
+                    <td>@item.Category.Name, @item.CategoryID</td>
+                    <td>@item.Brand.Name, @item.BrandID</td>
                     <td>@item.AvailabilityStatus</td>
-                    <td>@item.Category.Name</td>
-                    <td>@item.Brand.Name</td>
                 </tr>
             }
         </tbody>

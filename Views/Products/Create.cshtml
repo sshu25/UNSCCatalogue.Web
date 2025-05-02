@@ -4,17 +4,37 @@
 
 @using (Html.BeginForm("Create", "Products", FormMethod.Post))
 {
-    <div class="form-group">
-        <label>@Strings.ID</label>
-        <input type="text" class="form-control" id="txtID" placeholder="@Strings.ID" name="ID" />
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="Name">@Strings.Name</label>
+            <input type="text" class="form-control" placeholder="@Strings.Name" name="Name" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Price">@Strings.Price</label>
+            <input type="text" class="form-control" placeholder="@Strings.Price" name="Price" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="DateOfPurchase">@Strings.DateofPurchase</label>
+            <input type="date" class="form-control" placeholder="@Strings.DateofPurchase" name="DateOfPurchase" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="CategoryID">@Strings.Category</label>
+            <input type="text" class="form-control" placeholder="@Strings.Category" name="CategoryID" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="BrandID">@Strings.Brand</label>
+            <input type="text" class="form-control" placeholder="@Strings.Brand" name="BrandID" />
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <label class="form-check-label" for="AvailabilityStatus">@Strings.AvailabilityStatus</label>
+                <input type="checkbox" class="form-check-input" name="AvailabilityStatus" value="true"/>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success">@Strings.Submit</button>
+            <a class="btn btn-danger" href="/Products/Index">@Strings.Cancel</a>
+        </div>
     </div>
-    <div class="form-group">
-        <label>@Strings.Name</label>
-        <input type="text" class="form-control" id="txtName" placeholder="@Strings.Name" name="Name" />
-    </div>
-    <div class="form-group">
-        <label>@Strings.Cost</label>
-        <input type="text" class="form-control" id="txtCost" placeholder="@Strings.Cost" name="Cost" />
-    </div>
-    <button class="btn btn-success">@Strings.Submit</button>
 }
