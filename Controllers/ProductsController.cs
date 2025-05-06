@@ -18,10 +18,10 @@ namespace UNSCCatalogue.Web.Controllers
             return View(products);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(long id)
         {
             UNSCdbEntities db = new UNSCdbEntities();
-            Product prod = db.Products.FirstOrDefault(x => x.ID == id);
+            Product prod = db.Products.Where(x => x.ID == id).FirstOrDefault();
             return View(prod);
         }
 
@@ -33,11 +33,33 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            //UNSCdbEntities db = new UNSCdbEntities();
-            //db.Products.Add(product);
-            //db.SaveChanges();
-            //return RedirectToAction("Index");
-            return View();
+            UNSCdbEntities db = new UNSCdbEntities();
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(long id)
+        {
+            UNSCdbEntities db = new UNSCdbEntities();
+            Product prod = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            return View(prod);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            UNSCdbEntities db = new UNSCdbEntities();
+            Product existing = db.Products.Where(x => x.ID == product.ID).FirstOrDefault();
+            existing.Name = product.Name;
+            existing.Price = product.Price;
+            existing.DateOfPurchase = product.DateOfPurchase;
+            existing.CategoryID = product.CategoryID;
+            existing.BrandID = product.BrandID;
+            existing.AvailabilityStatus = product.AvailabilityStatus;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

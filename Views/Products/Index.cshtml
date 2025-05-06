@@ -28,6 +28,7 @@
                 <th>@Strings.Category</th>
                 <th>@Strings.Brand</th>
                 <th>@Strings.AvailabilityStatus</th>
+                <th>@Strings.Action</th>
             </tr>
         </thead>
         <tbody>
@@ -36,11 +37,15 @@
                 <tr>
                     <td>@item.ID</td>
                     <td><a href="/Products/Details/@item.ID">@item.Name</a></td>
-                    <td>@item.Price.Value.ToString("C")</td>
-                    <td>@item.DateOfPurchase.Value.ToString("d/M/yyyy")</td>
+                    <td>@(item.Price.HasValue ? item.Price.Value.ToString("C") : "")</td>
+                    <td>@(item.DateOfPurchase.HasValue ? item.DateOfPurchase.Value.ToString("d/M/yyyy") : "")</td>
                     <td>@item.Category.Name, @item.CategoryID</td>
                     <td>@item.Brand.Name, @item.BrandID</td>
                     <td>@item.AvailabilityStatus</td>
+                    <td>
+                        <a href="/Products/Details/@item.ID">@Strings.Details</a>
+                        <a href="/Products/Edit/@item.ID">@Strings.Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>
