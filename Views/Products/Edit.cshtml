@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="DateOfPurchase">@Strings.DateofPurchase</label>
-            <input class="form-control" type="date" value="@Model.DateOfPurchase.Value.ToString("yyyy-MM-dd")" name="DateOfPurchase" />
+            <input class="form-control" type="date" value="@(Model.DateOfPurchase.HasValue ? Model.DateOfPurchase.Value.ToString("d/M/yyyy") : "")" name="DateOfPurchase" />
         </div>
         <div class="form-group col-md-6">
             <label for="CategoryID">@Strings.Category</label>

@@ -39,13 +39,13 @@
                     <td><a href="/Products/Details/@item.ID">@item.Name</a></td>
                     <td>@(item.Price.HasValue ? item.Price.Value.ToString("C") : "")</td>
                     <td>@(item.DateOfPurchase.HasValue ? item.DateOfPurchase.Value.ToString("d/M/yyyy") : "")</td>
-                    <td>@item.Category.Name, @item.CategoryID</td>
-                    <td>@item.Brand.Name, @item.BrandID</td>
+                    <td>@(item.Category != null ? item.Category.Name : "")</td>
+                    <td>@(item.Brand!= null ? item.Brand.Name : "")</td>
                     <td>@item.AvailabilityStatus</td>
                     <td>
-                        <a href="/Products/Details/@item.ID">@Strings.Details</a>
-                        <a href="/Products/Edit/@item.ID">@Strings.Edit</a>
-                        <a href="/Products/Delete/@item.ID" id="Delete">@Strings.Delete</a>
+                        <a class="btn btn-primary" href="/Products/Details/@item.ID">@Strings.Details</a>
+                        <a class="btn btn-primary" href="/Products/Edit/@item.ID">@Strings.Edit</a>
+                        <a class="btn btn-primary" href="" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup, handled by jquery*@
                     </td>
                 </tr>
             }
@@ -59,8 +59,8 @@
             <p>@Strings.DeleteConfirmation</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="deleteYes">@Strings.Yes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">@Strings.No</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="deleteYes">@Strings.Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Strings.No</button>
         </div>
     </div>
 </div>
@@ -71,30 +71,28 @@
             <p>@ErrorMessages.DeleteFailed</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">@Strings.OK</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">@Strings.OK</button>
         </div>
     </div>
 </div>
 
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('[id^="Delete"]').on("click", function () {
-                var chargeID = $(event.target)[0].id.split("Delete")[1];
-
-                $('#confirmDelete').modal('toggle');
-                document.getElementById('deleteYes').onclick = function () {
-                    $.ajax({
-                        url: '/Charges/Delete?id=' + chargeID,
-                        type: 'POST',
-                        success: function (data) {
-                            window.location.reload();
-                        },
-                        error: function (xhr, status, error) {
-                            $('#errorDelete').modal('toggle');
-                        }
-                    });
-                }
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[id^="Delete_"]').on("click", function () {
+            $('#confirmDelete').modal('toggle');
+            var itemID = $(event.target)[0].id.split("Delete_")[1];
+            document.getElementById('deleteYes').onclick = function () {
+                $.ajax({
+                    url: '/Products/Delete/' + itemID,
+                    type: 'POST',
+                    success: function (data) {
+                        window.location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        $('#errorDelete').modal('toggle');
+                    }
+                });
+            }
         });
-    </script>
+    });
+</script>
