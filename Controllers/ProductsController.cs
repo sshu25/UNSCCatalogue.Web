@@ -21,8 +21,8 @@ namespace UNSCCatalogue.Web.Controllers
         public ActionResult Details(long id)
         {
             UNSCdbEntities db = new UNSCdbEntities();
-            Product prod = db.Products.Where(x => x.ID == id).FirstOrDefault();
-            return View(prod);
+            Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            return View(product);
         }
 
         public ActionResult Create()
@@ -42,8 +42,8 @@ namespace UNSCCatalogue.Web.Controllers
         public ActionResult Edit(long id)
         {
             UNSCdbEntities db = new UNSCdbEntities();
-            Product prod = db.Products.Where(x => x.ID == id).FirstOrDefault();
-            return View(prod);
+            Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            return View(product);
         }
 
         [HttpPost]
@@ -58,6 +58,16 @@ namespace UNSCCatalogue.Web.Controllers
             existing.BrandID = product.BrandID;
             existing.AvailabilityStatus = product.AvailabilityStatus;
 
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(long id)
+        {
+            UNSCdbEntities db = new UNSCdbEntities();
+            Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

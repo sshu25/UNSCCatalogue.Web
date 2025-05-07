@@ -45,9 +45,56 @@
                     <td>
                         <a href="/Products/Details/@item.ID">@Strings.Details</a>
                         <a href="/Products/Edit/@item.ID">@Strings.Edit</a>
+                        <a href="/Products/Delete/@item.ID" id="Delete">@Strings.Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog modal-content">
+        <div class="modal-body">
+            <p>@Strings.DeleteConfirmation</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="deleteYes">@Strings.Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">@Strings.No</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorDelete">
+    <div class="modal-dialog modal-content">
+        <div class="modal-body">
+            <p>@ErrorMessages.DeleteFailed</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">@Strings.OK</button>
+        </div>
+    </div>
+</div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[id^="Delete"]').on("click", function () {
+                var chargeID = $(event.target)[0].id.split("Delete")[1];
+
+                $('#confirmDelete').modal('toggle');
+                document.getElementById('deleteYes').onclick = function () {
+                    $.ajax({
+                        url: '/Charges/Delete?id=' + chargeID,
+                        type: 'POST',
+                        success: function (data) {
+                            window.location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            $('#errorDelete').modal('toggle');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
