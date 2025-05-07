@@ -20,15 +20,28 @@
 <div class="container-fluid">
     <table class="table">
         <thead>
-            <tr>
-                <th>@Strings.ID</th>
-                <th>@Strings.Name</th>
-                <th>@Strings.Price</th>
-                <th>@Strings.DateofPurchase</th>
-                <th>@Strings.Category</th>
-                <th>@Strings.Brand</th>
-                <th>@Strings.AvailabilityStatus</th>
-                <th>@Strings.Action</th>
+            <tr class="table-secondary">
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Products/Index?sortColumn=ID&iconClass=fa-sort-asc">@Strings.ID</a>
+                    }
+                    else
+                    {
+                        <a href="/Products/Index?sortColumn=ID&iconClass=fa-sort-desc">@Strings.ID</a>
+                    }
+                    @if (ViewBag.SortColumn == "ID")
+                    {
+                    <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <a>@Strings.Name</a>
+                <a>@Strings.Price</a>
+                <a>@Strings.DateofPurchase</a>
+                <a>@Strings.Category</a>
+                <a>@Strings.Brand</a>
+                <a>@Strings.AvailabilityStatus</a>
+                <a>@Strings.Action</a>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +58,7 @@
                     <td>
                         <a class="btn btn-primary" href="/Products/Details/@item.ID">@Strings.Details</a>
                         <a class="btn btn-primary" href="/Products/Edit/@item.ID">@Strings.Edit</a>
-                        <a class="btn btn-primary" href="" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup, handled by jquery*@
+                        <a class="btn btn-primary" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup, handled by jquery*@
                     </td>
                 </tr>
             }

@@ -10,11 +10,64 @@ namespace UNSCCatalogue.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        public ActionResult Index(string search = "")
+        public ActionResult Index(string search = "", string sortColumn = "ID", string iconClass = "fa-sort-asc")
         {
             UNSCdbEntities db = new UNSCdbEntities();
             List<Product> products = db.Products.Where(x => x.Name.Contains(search)).ToList();
             ViewBag.Search = search;
+            ViewBag.SortColumn = sortColumn;
+            ViewBag.IconClass = iconClass;
+
+            if (ViewBag.SortColumn == "ID")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.ID).ToList();
+                else
+                    products = products.OrderByDescending(x => x.ID).ToList();
+            }
+            else if (ViewBag.SortColumn == "Name")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.Name).ToList();
+                else
+                    products = products.OrderByDescending(x => x.Name).ToList();
+            }
+            else if (ViewBag.SortColumn == "Price")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.Price).ToList();
+                else
+                    products = products.OrderByDescending(x => x.Price).ToList();
+            }
+            else if (ViewBag.SortColumn == "DateOfPurchase")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.DateOfPurchase).ToList();
+                else
+                    products = products.OrderByDescending(x => x.DateOfPurchase).ToList();
+            }
+            else if (ViewBag.SortColumn == "AvailabilityStatus")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.AvailabilityStatus).ToList();
+                else
+                    products = products.OrderByDescending(x => x.AvailabilityStatus).ToList();
+            }
+            else if (ViewBag.SortColumn == "BrandID")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.Brand.Name).ToList();
+                else
+                    products = products.OrderByDescending(x => x.Brand.Name).ToList();
+            }
+            else if (ViewBag.SortColumn == "CategoryID")
+            {
+                if (ViewBag.IconClass == "fa-sort-asc")
+                    products = products.OrderBy(x => x.Category.Name).ToList();
+                else
+                    products = products.OrderByDescending(x => x.Category.Name).ToList();
+            }
+
             return View(products);
         }
 
@@ -27,6 +80,9 @@ namespace UNSCCatalogue.Web.Controllers
 
         public ActionResult Create()
         {
+            UNSCdbEntities db = new UNSCdbEntities();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
             return View();
         }
 
@@ -43,6 +99,8 @@ namespace UNSCCatalogue.Web.Controllers
         {
             UNSCdbEntities db = new UNSCdbEntities();
             Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
             return View(product);
         }
 
