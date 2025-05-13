@@ -10,7 +10,7 @@ namespace UNSCCatalogue.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        public ActionResult Index(string search = "", string sortColumn = "ID", string iconClass = "fa-sort-asc")
+        public ActionResult Index(string search = "", string sortColumn = "ID", string iconClass = "fa-sort-asc", int pageNo = 1)
         {
             UNSCdbEntities db = new UNSCdbEntities();
             List<Product> products = db.Products.Where(x => x.Name.Contains(search)).ToList();
@@ -18,6 +18,7 @@ namespace UNSCCatalogue.Web.Controllers
             ViewBag.SortColumn = sortColumn;
             ViewBag.IconClass = iconClass;
 
+            // Sorting
             if (ViewBag.SortColumn == "ID")
             {
                 if (ViewBag.IconClass == "fa-sort-asc")
@@ -53,14 +54,14 @@ namespace UNSCCatalogue.Web.Controllers
                 else
                     products = products.OrderByDescending(x => x.AvailabilityStatus).ToList();
             }
-            else if (ViewBag.SortColumn == "BrandID")
+            else if (ViewBag.SortColumn == "Brand")
             {
                 if (ViewBag.IconClass == "fa-sort-asc")
                     products = products.OrderBy(x => x.Brand.Name).ToList();
                 else
                     products = products.OrderByDescending(x => x.Brand.Name).ToList();
             }
-            else if (ViewBag.SortColumn == "CategoryID")
+            else if (ViewBag.SortColumn == "Category")
             {
                 if (ViewBag.IconClass == "fa-sort-asc")
                     products = products.OrderBy(x => x.Category.Name).ToList();
@@ -68,6 +69,13 @@ namespace UNSCCatalogue.Web.Controllers
                     products = products.OrderByDescending(x => x.Category.Name).ToList();
             }
 
+            // Paging
+            int recordsPerPage = 3;
+            int totalPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count) / Convert.ToDouble(recordsPerPage)));
+            int skippedRecords = (pageNo - 1) * recordsPerPage; // Amount of records on previous pages, so skip previous pages and display what's next
+            ViewBag.PageNo = pageNo;
+            ViewBag.TotalPages = totalPages;
+            products = products.Skip(skippedRecords).Take(recordsPerPage).ToList();
             return View(products);
         }
 
