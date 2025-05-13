@@ -98,6 +98,15 @@ namespace UNSCCatalogue.Web.Controllers
         public ActionResult Create(Product product)
         {
             UNSCdbEntities db = new UNSCdbEntities();
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
+                var imgBytes = new Byte[file.ContentLength];
+                var imgBytesLength = imgBytes.Length;
+                file.InputStream.Read(imgBytes, 0, imgBytesLength);
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
+                product.Photo = base64String;
+            }
             db.Products.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -123,6 +132,15 @@ namespace UNSCCatalogue.Web.Controllers
             existing.CategoryID = product.CategoryID;
             existing.BrandID = product.BrandID;
             existing.AvailabilityStatus = product.AvailabilityStatus;
+            if (Request.Files.Count >= 1 && product.Photo != null)
+            {
+                var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
+                var imgBytes = new Byte[file.ContentLength];
+                var imgBytesLength = imgBytes.Length;
+                file.InputStream.Read(imgBytes, 0, imgBytesLength);
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
+                existing.Photo = base64String;
+            }
 
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -2,7 +2,7 @@
     ViewBag.Title = Strings.Create;
 }
 
-@using (Html.BeginForm("Create", "Products", FormMethod.Post))
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })) // enctype needed to submit files to server (i.e. Photo)
 {
     <div class="row">
         <div class="form-group col-md-6">
@@ -36,6 +36,10 @@
                     <option value="@bra.ID">@bra.Name</option>
                 }
             </select>
+        </div>
+        <div class="form-group">
+            <label for="Photo">@Strings.Photo</label>
+            <input class="form-control" type="file" name="Photo">
         </div>
         <div class="form-group">
             <div class="form-check">

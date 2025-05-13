@@ -21,6 +21,7 @@ namespace UNSCCatalogue.Web.Models
         public Nullable<long> CategoryID { get; set; }
         public Nullable<long> BrandID { get; set; }
         public bool AvailabilityStatus { get; set; }
+        public string Photo { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
