@@ -4,43 +4,43 @@
     Layout = "~/Views/Shared/_LayoutHeader.cshtml";
 }
 
-<a class="btn btn-primary" href="/Products/Edit/@Model.ID">@Strings.Edit</a>
+@Html.ActionLink(Strings.Edit, "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
 
 <table class="table">
     <tbody>
         <tr>
-            <th>@Strings.Photo</th>
+            <th>@Html.LabelFor(x => x.Photo)</th>
             <td><img src="data:image;base64, @Model.Photo" width="100px" /></td>
         </tr>
         <tr>
-            <th>@Strings.ID</th>
-            <td>@Model.ID</td>
+            <th>@Html.LabelFor(x => x.ID)</th>
+            <td>@Html.DisplayFor(x => x.ID)</td>
         </tr>
         <tr>
-            <th>@Strings.Name</th>
-            <td>@Model.Name</td>
+            <th>@Html.LabelFor(x => x.Name)</th>
+            <td>@Html.DisplayFor(x => x.Name)</td>
         </tr>
         <tr>
-            <th>@Strings.Cost</th>
+            <th>@Html.LabelFor(x => x.Price)</th>
             <td>@(Model.Price.HasValue ? Model.Price.Value.ToString("C") : "")</td>
         </tr>
         <tr>
-            <th>@Strings.DateOfPurchase</th>
+            <th>@Html.LabelFor(x => x.DateOfPurchase)</th>
             <td>@(Model.DateOfPurchase.HasValue ? Model.DateOfPurchase.Value.ToString("d/M/yyyy") : "")</td>
         </tr>
         <tr>
-            <th>@Strings.Category</th>
-            <td>@(Model.Category != null ? Model.Category.Name : "")</td>
+            <th>@Html.LabelFor(x => x.Category)</th>
+            <td>@Html.DisplayFor(x => x.Category.Name)</td>
         </tr>
         <tr>
-            <th>@Strings.Brand</th>
-            <td>@(Model.Brand != null ? Model.Brand.Name : "")</td>
+            <th>@Html.LabelFor(x => x.Brand)</th>
+            <td>@Html.DisplayFor(x => x.Brand.Name)</td>
         </tr>
         <tr>
-            <th>@Strings.AvailabilityStatus</th>
-            <td>@Model.AvailabilityStatus</td>
+            <th>@Html.LabelFor(x => x.AvailabilityStatus)</th>
+            <td>@Html.DisplayFor(x => x.AvailabilityStatus)</td>
         </tr>
     </tbody>
 </table>
 
-<a href="/Products/Index">@Strings.Return</a>
+<a class="btn btn-danger" href="javascript:void(0)" onclick="history.go(-1)">@Strings.Return</a>

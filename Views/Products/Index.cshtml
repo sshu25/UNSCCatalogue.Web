@@ -10,7 +10,7 @@
 
 <form class="row g-3" action="/Products/Index">
     <div class="col-auto">
-        <input type="search" class="form-control" id="search" name="search" placeholder="@Strings.Search" value="@ViewBag.Search" />
+        @Html.TextBox(Strings.Search, ViewBag.Search as string, new { @class = "form-control mr-1", placeholder = Strings.Search})
     </div>
     <div class="col-auto">
         <button type="submit" class="btn btn-primary">@Strings.Search</button>
@@ -132,16 +132,16 @@
             {
                 <tr>
                     <td><img src="data:image;base64, @item.Photo" width="100px"/></td>
-                    <td>@item.ID</td>
-                    <td><a href="/Products/Details/@item.ID">@item.Name</a></td>
+                    <td>@Html.DisplayFor(x => item.ID)</td>
+                    <td>@Html.ActionLink(item.Name, "Details", new { id = item.ID })</td>
                     <td>@(item.Price.HasValue ? item.Price.Value.ToString("C") : "")</td>
                     <td>@(item.DateOfPurchase.HasValue ? item.DateOfPurchase.Value.ToString("d/M/yyyy") : "")</td>
-                    <td>@(item.Category != null ? item.Category.Name : "")</td>
-                    <td>@(item.Brand!= null ? item.Brand.Name : "")</td>
-                    <td>@item.AvailabilityStatus</td>
+                    <td>@Html.DisplayFor(x => item.Category.Name)</td>
+                    <td>@Html.DisplayFor(x => item.Brand.Name)</td>
+                    <td>@Html.DisplayFor(x => item.AvailabilityStatus)</td>
                     <td>
-                        <a class="btn btn-primary" href="/Products/Details/@item.ID">@Strings.Details</a>
-                        <a class="btn btn-primary" href="/Products/Edit/@item.ID">@Strings.Edit</a>
+                        @Html.ActionLink(Strings.Details, "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink(Strings.Edit, "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
                         <a class="btn btn-primary" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup, handled by jquery*@
                     </td>
                 </tr>

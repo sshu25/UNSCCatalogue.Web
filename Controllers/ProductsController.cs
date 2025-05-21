@@ -70,7 +70,7 @@ namespace UNSCCatalogue.Web.Controllers
             }
 
             // Paging
-            int recordsPerPage = 3;
+            int recordsPerPage = 5;
             int totalPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count) / Convert.ToDouble(recordsPerPage)));
             int skippedRecords = (pageNo - 1) * recordsPerPage; // Amount of records on previous pages, so skip previous pages and display what's next
             ViewBag.PageNo = pageNo;

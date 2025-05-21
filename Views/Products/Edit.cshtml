@@ -7,66 +7,40 @@
 {
     <div class="row">
         <div class="form-group col-md-6">
-            <input type="hidden" name="ID" value="@Model.ID" />
-            <label for="Name">@Strings.Name</label>
-            <input class="form-control" type="text" name="Name" value="@Model.Name" />
+            @Html.HiddenFor(x => x.ID)
+
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", value = Model.Name })
         </div>
         <div class="form-group col-md-6">
-            <label for="Price">@Strings.Price</label>
-            <input class="form-control" type="text" name="Price" value="@Model.Price" />
+            @Html.LabelFor(x => x.Price)
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control", value = Model.Price })
         </div>
         <div class="form-group col-md-6">
-            <label for="DateOfPurchase">@Strings.DateOfPurchase</label>
+            @Html.LabelFor(x => x.DateOfPurchase)
             <input class="form-control" type="date" value="@(Model.DateOfPurchase.HasValue ? Model.DateOfPurchase.Value.ToString("d/M/yyyy") : "")" name="DateOfPurchase" />
         </div>
         <div class="form-group col-md-6">
-            <label for="CategoryID">@Strings.Category</label>
-            <select class="form-control" name="CategoryID">
-                <option>@Strings.PleaseSelect</option>
-                @foreach (var cat in ViewBag.Categories)
-                {
-                    if (cat.ID == Model.CategoryID)
-                    {
-                        <option value="@cat.ID" selected="selected">@cat.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@cat.ID">@cat.Name</option>
-                    }
-                }
-            </select>
+            @Html.LabelFor(x => x.Category)
+            @Html.DropDownListFor(x => x.CategoryID, new SelectList(ViewBag.Categories, "ID", "Name"), Strings.PleaseSelect, new { @class = "form-control" })
         </div>
         <div class="form-group col-md-6">
-            <label for="BrandID">@Strings.Brand</label>
-            <select class="form-control" name="BrandID">
-                <option>@Strings.PleaseSelect</option>
-                @foreach (var bra in ViewBag.Brands)
-                {
-                    if (bra.ID == Model.BrandID)
-                    {
-                        <option value="@bra.ID" selected="selected">@bra.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@bra.ID">@bra.Name</option>
-                    }
-
-                }
-            </select>
+            @Html.LabelFor(x => x.Brand)
+            @Html.DropDownListFor(x => x.BrandID, new SelectList(ViewBag.Brands, "ID", "Name"), Strings.PleaseSelect, new { @class = "form-control" })
         </div>
         <div class="form-group">
             <div class="form-check">
-                <label class="form-check-label" for="AvailabilityStatus">@Strings.AvailabilityStatus</label>
-                <input class="form-check-input" type="checkbox" name="AvailabilityStatus" value="true" checked="@Model.AvailabilityStatus" />
+                @Html.CheckBoxFor(x => x.AvailabilityStatus, new { @class = "form-check-input"} )
+                @Html.LabelFor(x => x.AvailabilityStatus)
             </div>
         </div>
         <div class="form-group">
-            <label for="Photo">@Strings.Photo</label>
+            <th>@Html.LabelFor(x => x.Photo)</th>
             <input class="form-control" type="file" name="Photo" value="@Model.Photo">
         </div>
         <div>
             <button type="submit" class="btn btn-success">@Strings.Submit</button>
-            <a class="btn btn-danger" href="/Products/Index">@Strings.Cancel</a>
+            <a class="btn btn-danger" href="javascript:void(0)" onclick="history.go(-1)">@Strings.Cancel</a>
         </div>
     </div>
 }
