@@ -10,22 +10,32 @@ namespace UNSCCatalogue.Web.Models
     [Table("Products")]
     public partial class Product
     {
-        [Key, Display(Name = "ID")]
+        [Key]
+        [Display(Name = "ID")]
         public long ID { get; set; }
 
-        [Required, Display(Name = "Name")]
+        [Required]
+        [Display(Name = "Name")]
+        [RegularExpression(@"^[A-Za-z\d-. ]*$", ErrorMessage = "Name can only be alphanumeric characters, hyphens, or periods.")]
+        [MinLength(1, ErrorMessage = "Name must be between 1-40 characters")]
+        [MaxLength(40, ErrorMessage = "Name must be between 1-40 characters")]
         public string Name { get; set; }
 
-        [Required, Display(Name = "Price")]
+        [Required]
+        [Display(Name = "Price")]
+        [Range(1, double.MaxValue, ErrorMessage = "Price must be between more than 0")]
         public Nullable<decimal> Price { get; set; }
 
-        [Display(Name = "Date Of Purchase"), Column("DateOfPurchase", TypeName ="datetime")]
+        [Display(Name = "Date Of Purchase")]
+        [Column("DateOfPurchase", TypeName ="datetime")]
         public Nullable<System.DateTime> DOP { get; set; }
 
-        [Required, Display(Name = "Category ID")]
+        [Required(ErrorMessage = "The Category field is required.")]
+        [Display(Name = "Category ID")]
         public Nullable<long> CategoryID { get; set; }
 
-        [Required, Display(Name = "Brand ID")]
+        [Required(ErrorMessage = "The Brand field is required.")]
+        [Display(Name = "Brand ID")]
         public Nullable<long> BrandID { get; set; }
 
         [Display(Name = "Availability Status")]

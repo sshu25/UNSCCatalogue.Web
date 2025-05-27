@@ -25,16 +25,16 @@
             <td>@(Model.Price.HasValue ? Model.Price.Value.ToString("C") : "")</td>
         </tr>
         <tr>
-            <th>@Html.LabelFor(x => x.DOP)</th>
-            <td>@(Model.DOP.HasValue ? Model.DOP.Value.ToString("d/M/yyyy") : "")</td>
-        </tr>
-        <tr>
             <th>@Html.LabelFor(x => x.Category)</th>
             <td>@Html.DisplayFor(x => x.Category.Name)</td>
         </tr>
         <tr>
             <th>@Html.LabelFor(x => x.Brand)</th>
             <td>@Html.DisplayFor(x => x.Brand.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.DOP)</th>
+            <td>@(Model.DOP.HasValue ? Model.DOP.Value.ToString("d/M/yyyy") : "")</td>
         </tr>
         <tr>
             <th>@Html.LabelFor(x => x.AvailabilityStatus)</th>

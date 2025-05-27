@@ -132,26 +132,35 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            UNSCdbContext db = new UNSCdbContext();
-            Product existing = db.Products.Where(x => x.ID == product.ID).FirstOrDefault();
-            existing.Name = product.Name;
-            existing.Price = product.Price;
-            existing.DOP = product.DOP;
-            existing.CategoryID = product.CategoryID;
-            existing.BrandID = product.BrandID;
-            existing.AvailabilityStatus = product.AvailabilityStatus;
-            if (Request.Files.Count >= 1 && product.Photo != null)
+            if (ModelState.IsValid)
             {
-                var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
-                var imgBytes = new Byte[file.ContentLength];
-                var imgBytesLength = imgBytes.Length;
-                file.InputStream.Read(imgBytes, 0, imgBytesLength);
-                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
-                existing.Photo = base64String;
+
+                UNSCdbContext db = new UNSCdbContext();
+                Product existing = db.Products.Where(x => x.ID == product.ID).FirstOrDefault();
+                existing.Name = product.Name;
+                existing.Price = product.Price;
+                existing.DOP = product.DOP;
+                existing.CategoryID = product.CategoryID;
+                existing.BrandID = product.BrandID;
+                existing.AvailabilityStatus = product.AvailabilityStatus;
+                if (Request.Files.Count >= 1 && product.Photo != null)
+                {
+                    var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
+                    var imgBytes = new Byte[file.ContentLength];
+                    var imgBytesLength = imgBytes.Length;
+                    file.InputStream.Read(imgBytes, 0, imgBytesLength);
+                    var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
+                    existing.Photo = base64String;
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
             }
 
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         [HttpPost]
