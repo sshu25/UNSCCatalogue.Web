@@ -135,14 +135,14 @@
                     <td>@Html.DisplayFor(x => item.ID)</td>
                     <td>@Html.ActionLink(item.Name, "Details", new { id = item.ID })</td>
                     <td>@(item.Price.HasValue ? item.Price.Value.ToString("C") : "")</td>
-                    <td>@(item.DateOfPurchase.HasValue ? item.DateOfPurchase.Value.ToString("d/M/yyyy") : "")</td>
+                    <td>@(item.DOP.HasValue ? item.DOP.Value.ToString("d/M/yyyy") : "")</td>
                     <td>@Html.DisplayFor(x => item.Category.Name)</td>
                     <td>@Html.DisplayFor(x => item.Brand.Name)</td>
                     <td>@Html.DisplayFor(x => item.AvailabilityStatus)</td>
                     <td>
                         @Html.ActionLink(Strings.Details, "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
                         @Html.ActionLink(Strings.Edit, "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
-                        <a class="btn btn-primary" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup, handled by jquery*@
+                        <a class="btn btn-primary" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup*@
                     </td>
                 </tr>
             }

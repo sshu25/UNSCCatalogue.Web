@@ -43,9 +43,9 @@ namespace UNSCCatalogue.Web.Controllers
             else if (ViewBag.SortColumn == "DateOfPurchase")
             {
                 if (ViewBag.IconClass == "fa-sort-asc")
-                    products = products.OrderBy(x => x.DateOfPurchase).ToList();
+                    products = products.OrderBy(x => x.DOP).ToList();
                 else
-                    products = products.OrderByDescending(x => x.DateOfPurchase).ToList();
+                    products = products.OrderByDescending(x => x.DOP).ToList();
             }
             else if (ViewBag.SortColumn == "AvailabilityStatus")
             {
@@ -95,21 +95,29 @@ namespace UNSCCatalogue.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create([Bind(Include = "ID, Name, Price, DOP, Availability Status, CategoryID, BrandID, Photo")] Product product)
         {
-            UNSCdbContext db = new UNSCdbContext();
-            if (Request.Files.Count >= 1)
+            if (ModelState.IsValid)
             {
-                var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
-                var imgBytes = new Byte[file.ContentLength];
-                var imgBytesLength = imgBytes.Length;
-                file.InputStream.Read(imgBytes, 0, imgBytesLength);
-                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
-                product.Photo = base64String;
+
+                UNSCdbContext db = new UNSCdbContext();
+                if (Request.Files.Count >= 1)
+                {
+                    var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
+                    var imgBytes = new Byte[file.ContentLength];
+                    var imgBytesLength = imgBytes.Length;
+                    file.InputStream.Read(imgBytes, 0, imgBytesLength);
+                    var base64String = Convert.ToBase64String(imgBytes, 0, imgBytesLength);
+                    product.Photo = base64String;
+                }
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            db.Products.Add(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                return Redirect("Create");
+            }
         }
 
         public ActionResult Edit(long id)
@@ -128,7 +136,7 @@ namespace UNSCCatalogue.Web.Controllers
             Product existing = db.Products.Where(x => x.ID == product.ID).FirstOrDefault();
             existing.Name = product.Name;
             existing.Price = product.Price;
-            existing.DateOfPurchase = product.DateOfPurchase;
+            existing.DOP = product.DOP;
             existing.CategoryID = product.CategoryID;
             existing.BrandID = product.BrandID;
             existing.AvailabilityStatus = product.AvailabilityStatus;

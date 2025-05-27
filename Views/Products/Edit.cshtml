@@ -17,8 +17,8 @@
             @Html.TextBoxFor(x => x.Price, new { @class = "form-control", value = Model.Price })
         </div>
         <div class="form-group col-md-6">
-            @Html.LabelFor(x => x.DateOfPurchase)
-            <input class="form-control" type="date" value="@(Model.DateOfPurchase.HasValue ? Model.DateOfPurchase.Value.ToString("d/M/yyyy") : "")" name="DateOfPurchase" />
+            @Html.LabelFor(x => x.DOP)
+            <input class="form-control" type="date" value="@(Model.DOP.HasValue ? Model.DOP.Value.ToString("d/M/yyyy") : "")" name="DateOfPurchase" />
         </div>
         <div class="form-group col-md-6">
             @Html.LabelFor(x => x.Category)
