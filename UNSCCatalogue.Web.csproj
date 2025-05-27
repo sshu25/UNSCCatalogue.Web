@@ -264,6 +264,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505271752313_InitialData.cs" />
+    <Compile Include="Migrations\202505271752313_InitialData.Designer.cs">
+      <DependentUpon>202505271752313_InitialData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AddressBinder.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -307,6 +312,11 @@
       <Project>{c6000297-5b21-4396-86af-2acfb5f4e155}</Project>
       <Name>UNSCCatalogue.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202505271752313_InitialData.resx">
+      <DependentUpon>202505271752313_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
