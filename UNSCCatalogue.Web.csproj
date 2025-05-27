@@ -118,16 +118,6 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\UNSCdb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UNSCdb.edmx</DependentUpon>
-      <LastGenOutput>UNSCdb.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\UNSCdb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UNSCdb.edmx</DependentUpon>
-      <LastGenOutput>UNSCdb.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -166,13 +156,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="libman.json" />
-    <EntityDeploy Include="Models\UNSCdb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UNSCdb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\UNSCdb.edmx.diagram">
-      <DependentUpon>UNSCdb.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -283,30 +266,10 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AddressBinder.cs" />
-    <Compile Include="Models\Brand.cs">
-      <DependentUpon>UNSCdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>UNSCdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>UNSCdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UNSCdb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UNSCdb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UNSCdb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UNSCdb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UNSCdb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UNSCdb.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\UNSCdbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

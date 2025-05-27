@@ -12,7 +12,7 @@ namespace UNSCCatalogue.Web.Controllers
     {
         public ActionResult Index(string search = "", string sortColumn = "ID", string iconClass = "fa-sort-asc", int pageNo = 1)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             List<Product> products = db.Products.Where(x => x.Name.Contains(search)).ToList();
             ViewBag.Search = search;
             ViewBag.SortColumn = sortColumn;
@@ -81,14 +81,14 @@ namespace UNSCCatalogue.Web.Controllers
 
         public ActionResult Details(long id)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
             return View(product);
         }
 
         public ActionResult Create()
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
             return View();
@@ -97,7 +97,7 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             if (Request.Files.Count >= 1)
             {
                 var file = Request.Files[0]; // Only receiving one image, so .[0] is fine
@@ -114,7 +114,7 @@ namespace UNSCCatalogue.Web.Controllers
 
         public ActionResult Edit(long id)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
@@ -124,7 +124,7 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             Product existing = db.Products.Where(x => x.ID == product.ID).FirstOrDefault();
             existing.Name = product.Name;
             existing.Price = product.Price;
@@ -149,7 +149,7 @@ namespace UNSCCatalogue.Web.Controllers
         [HttpPost]
         public ActionResult Delete(long id)
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             Product product = db.Products.Where(x => x.ID == id).FirstOrDefault();
             db.Products.Remove(product);
             db.SaveChanges();

@@ -11,7 +11,7 @@ namespace UNSCCatalogue.Web.Controllers
     {
         public ActionResult Index()
         {
-            UNSCdbEntities db = new UNSCdbEntities();
+            UNSCdbContext db = new UNSCdbContext();
             List<Brand> brands = db.Brands.ToList();
             return View(brands);
         }
