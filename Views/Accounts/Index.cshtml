@@ -3,6 +3,8 @@
     ViewBag.Message = Strings.AccountMessage;
 }
 
-<div class="btn-group">
-    @Html.ActionLink(Strings.Create, "Create", null, new { @class = "btn btn-primary" })
-</div>
+@if (!User.Identity.IsAuthenticated)
+{
+    Html.ActionLink(Strings.Login, "Login", null, new { @class = "btn btn-primary" });
+}
+@Html.ActionLink(Strings.Create, "Create", null, new { @class = "btn btn-primary" })

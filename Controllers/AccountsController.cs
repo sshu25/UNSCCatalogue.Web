@@ -64,5 +64,34 @@ namespace UNSCCatalogue.Web.Controllers
                 return View();
             }
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(AccountLogin login)
+        {
+            var identityDB = new IdentitydbContext();
+            var userStore = new UserStore(identityDB);
+            var userManager = new UserManager(userStore);
+            var user = userManager.Find(login.Username, login.Password);
+
+            if (user != null)
+            {
+                // Login
+                var authManager = HttpContext.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authManager.SignIn(new AuthenticationProperties(), userIdentity);
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("Error", "Invalid username or password");
+                return View();
+            }
+        }
     }
 }

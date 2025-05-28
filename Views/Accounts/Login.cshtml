@@ -1,0 +1,24 @@
+﻿@model AccountLogin
+
+<h2 class="form-row mx-auto" style="width:300px">@Strings.Login</h2>
+
+@using (Html.BeginForm("Login", "Accounts", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    <div class="form-row mx-auto" style="width:300px">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(x => x.Username)
+            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = Strings.Username })
+            @Html.ValidationMessageFor(x => x.Username)
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(x => x.Password)
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = Strings.Password })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+
+        <button type="submit" class="btn btn-success">@Strings.Submit</button>
+        @Html.ActionLink(Strings.Cancel, "Index", null, new { @class = "btn btn-danger" })
+    </div>
+}
