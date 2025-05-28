@@ -43,14 +43,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/Home/Contact">@Strings.Contact</a>
                 </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Accounts/Login">@Strings.Login</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Accounts/Logout">@Strings.Logout</a>
+                    </li>
+                }
             </ul>
         </div>
         <div class="mx-auto text-white">
             @ViewBag.Message
-            @if (!User.Identity.IsAuthenticated)
-            {
-                Html.ActionLink(Strings.Login, "Login", "Account", null, new { @class = "btn btn-primary" });
-            }
         </div>
     </nav>
     <div class="container-fluid">

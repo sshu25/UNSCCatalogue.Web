@@ -9,6 +9,8 @@ using UNSCCatalogue.Web.Identity;
 using System.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.UI.WebControls;
 
 namespace UNSCCatalogue.Web.Controllers
 {
@@ -92,6 +94,14 @@ namespace UNSCCatalogue.Web.Controllers
                 ModelState.AddModelError("Error", "Invalid username or password");
                 return View();
             }
+        }
+
+        public ActionResult Logout()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+
+            return RedirectToAction("Index", "Accounts");
         }
     }
 }

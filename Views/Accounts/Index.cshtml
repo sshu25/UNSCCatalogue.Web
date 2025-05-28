@@ -7,4 +7,8 @@
 {
     Html.ActionLink(Strings.Login, "Login", null, new { @class = "btn btn-primary" });
 }
+else
+{
+    Html.ActionLink(Strings.Logout, "Logout", null, new { @class = "btn btn-primary" });
+}
 @Html.ActionLink(Strings.Create, "Create", null, new { @class = "btn btn-primary" })
