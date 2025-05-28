@@ -325,7 +325,7 @@
     <Compile Include="Models\UNSCdbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\Create.cs" />
+    <Compile Include="ViewModels\AccountCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

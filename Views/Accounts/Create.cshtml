@@ -1,4 +1,4 @@
-﻿@model Create
+﻿@model AccountCreate
 @{
     ViewBag.Title = Strings.Create;
 }
@@ -35,7 +35,7 @@
     </div>
     <div class="form-group col-md-6">
         @Html.LabelFor(x => x.DateOfBirth)
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = Strings.DateOfBirth })
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = Strings.DateOfBirth, type = "date" })
         @Html.ValidationMessageFor(x => x.DateOfBirth)
     </div>
     <div class="form-group col-md-6">

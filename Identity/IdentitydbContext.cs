@@ -13,12 +13,5 @@ namespace UNSCCatalogue.Web.Identity
         {
 
         }
-
-        //public DbSet<User> User { get; set; }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<User>().ToTable("User");
-        //}
     }
 }

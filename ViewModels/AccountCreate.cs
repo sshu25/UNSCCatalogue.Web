@@ -6,7 +6,7 @@ using System.Web;
 
 namespace UNSCCatalogue.Web.ViewModels
 {
-    public class Create
+    public class AccountCreate
     {
         [Required]
         public string Username {  get; set; }

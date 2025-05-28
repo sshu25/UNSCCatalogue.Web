@@ -23,8 +23,8 @@ namespace UNSCCatalogue.Web
 
         public void CreateRolesAndUsers()
         {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
             var db = new IdentitydbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db)); // Need to explicitly tell RoleManager to point to db, otherwise will try and point to "default connection"
             var userStore = new UserStore(db);
             var userManager = new UserManager(userStore);
 

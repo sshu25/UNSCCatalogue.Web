@@ -16,7 +16,7 @@ namespace UNSCCatalogue.Web.Models
 
         [Required]
         [Display(Name = "Name")]
-        [RegularExpression(@"^[A-Za-z\d-. ]*$", ErrorMessage = "Name can only be alphanumeric characters, hyphens, or periods.")]
+        [RegularExpression(@"^[A-Za-z\d-. ]*$", ErrorMessage = "Name can only be alphanumeric characters, hyphens, or periods")]
         [MinLength(1, ErrorMessage = "Name must be between 1-40 characters")]
         [MaxLength(40, ErrorMessage = "Name must be between 1-40 characters")]
         public string Name { get; set; }
@@ -30,11 +30,11 @@ namespace UNSCCatalogue.Web.Models
         [Column("DateOfPurchase", TypeName ="datetime")]
         public Nullable<System.DateTime> DOP { get; set; }
 
-        [Required(ErrorMessage = "The Category field is required.")]
+        [Required(ErrorMessage = "The Category field is required")]
         [Display(Name = "Category ID")]
         public Nullable<long> CategoryID { get; set; }
 
-        [Required(ErrorMessage = "The Brand field is required.")]
+        [Required(ErrorMessage = "The Brand field is required")]
         [Display(Name = "Brand ID")]
         public Nullable<long> BrandID { get; set; }
 
