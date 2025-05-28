@@ -10,7 +10,7 @@ namespace UNSCCatalogue.Web.Identity
 {
     public class UserStore : UserStore<User>
     {
-        public UserStore(UNSCdbContext db) : base(db)
+        public UserStore(IdentitydbContext db) : base(db)
         { 
         }
     }

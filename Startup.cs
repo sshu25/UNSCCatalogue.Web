@@ -24,7 +24,7 @@ namespace UNSCCatalogue.Web
         public void CreateRolesAndUsers()
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
-            var db = new UNSCdbContext();
+            var db = new IdentitydbContext();
             var userStore = new UserStore(db);
             var userManager = new UserManager(userStore);
 
