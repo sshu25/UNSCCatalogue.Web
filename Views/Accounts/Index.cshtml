@@ -2,3 +2,7 @@
     ViewBag.Title = Strings.Account;
     ViewBag.Message = Strings.AccountMessage;
 }
+
+<div class="btn-group">
+    @Html.ActionLink(Strings.Create, "Create", null, new { @class = "btn btn-primary" })
+</div>

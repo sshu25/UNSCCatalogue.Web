@@ -1,33 +1,62 @@
-﻿@model Account
+﻿@model Create
 @{
     ViewBag.Title = Strings.Create;
 }
 
 @using (Html.BeginForm("Create", "Accounts", FormMethod.Post))
 {
-    <div class="form-group">
-        <label>@Strings.ID</label>
-        <input type="text" class="form-control" id="txtID" placeholder="@Strings.ID" name="ID" />
+    @Html.ValidationSummary()
+
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = Strings.Username })
+        @Html.ValidationMessageFor(x => x.Username)
     </div>
-    <div class="form-group">
-        <label>@Strings.Name</label>
-        <input type="text" class="form-control" id="txtName" placeholder="@Strings.Name" name="Name" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Password)
+        @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = Strings.Password })
+        @Html.ValidationMessageFor(x => x.Password)
     </div>
-    <div class="form-group">
-        <label>@Strings.StreetNumber</label>
-        <input type="text" class="form-control" id="txtStreetNumber" placeholder="@Strings.StreetNumber" name="StreetNumber" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.ConfirmPassword)
+        @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", placeholder = Strings.ConfirmPassword })
+        @Html.ValidationMessageFor(x => x.ConfirmPassword)
     </div>
-    <div class="form-group">
-        <label>@Strings.StreetName</label>
-        <input type="text" class="form-control" id="txtStreetName" placeholder="@Strings.StreetName" name="StreetName" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = Strings.Email })
+        @Html.ValidationMessageFor(x => x.Email)
     </div>
-    <div class="form-group">
-        <label>@Strings.City</label>
-        <input type="text" class="form-control" id="txtCity" placeholder="@Strings.City" name="City" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Mobile)
+        @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control", placeholder = Strings.Mobile })
+        @Html.ValidationMessageFor(x => x.Mobile)
     </div>
-    <div class="form-group">
-        <label>@Strings.Planet</label>
-        <input type="text" class="form-control" id="txtPlanet" placeholder="@Strings.Planet" name="Planet" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.DateOfBirth)
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = Strings.DateOfBirth })
+        @Html.ValidationMessageFor(x => x.DateOfBirth)
     </div>
-    <button class="btn btn-success">@Strings.Submit</button>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Address)
+        @Html.TextBoxFor(x => x.Address, new { @class = "form-control", placeholder = Strings.Address })
+        @Html.ValidationMessageFor(x => x.Address)
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.City)
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control", placeholder = Strings.City })
+        @Html.ValidationMessageFor(x => x.City)
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(x => x.Country)
+        @Html.TextBoxFor(x => x.Country, new { @class = "form-control", placeholder = Strings.Country })
+        @Html.ValidationMessageFor(x => x.Country)
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-success">@Strings.Submit</button>
+        @Html.ActionLink(Strings.Cancel, "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</div>
 }
