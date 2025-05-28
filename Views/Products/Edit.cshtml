@@ -32,7 +32,7 @@
         </div>
         <div class="form-group col-md-6">
             @Html.LabelFor(x => x.DOP)
-            @Html.TextBoxFor(x => x.DOP, new { @class = "form-control", type = "date", placeholder = Strings.DateOfPurchase, value = (Model.DOP.HasValue ? Model.DOP.Value.ToString("d / M / yyyy") : "") })
+            @Html.TextBoxFor(x => x.DOP, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", placeholder = Strings.DateOfPurchase, value = Model.DOP })
             @Html.ValidationMessageFor(x => x.DOP)
         </div>
         <div class="form-group">
