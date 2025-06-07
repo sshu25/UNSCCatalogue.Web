@@ -323,6 +323,10 @@
     <Compile Include="Migrations\202505280333599_InitialData.Designer.cs">
       <DependentUpon>202505280333599_InitialData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202506072330321_RemoveNullabilityProductColumns.cs" />
+    <Compile Include="Migrations\202506072330321_RemoveNullabilityProductColumns.Designer.cs">
+      <DependentUpon>202506072330321_RemoveNullabilityProductColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AddressBinder.cs" />
@@ -385,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505280333599_InitialData.resx">
       <DependentUpon>202505280333599_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506072330321_RemoveNullabilityProductColumns.resx">
+      <DependentUpon>202506072330321_RemoveNullabilityProductColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -32,11 +32,11 @@ namespace UNSCCatalogue.Web.Models
 
         [Required(ErrorMessage = "The Category field is required")]
         [Display(Name = "Category ID")]
-        public Nullable<long> CategoryID { get; set; }
+        public long CategoryID { get; set; }
 
         [Required(ErrorMessage = "The Brand field is required")]
         [Display(Name = "Brand ID")]
-        public Nullable<long> BrandID { get; set; }
+        public long BrandID { get; set; }
 
         [Display(Name = "Availability Status")]
         public bool AvailabilityStatus { get; set; }
