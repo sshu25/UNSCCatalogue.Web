@@ -1,0 +1,33 @@
+﻿@model UNSCCatalogue.Web.Identity.User
+@{
+    ViewBag.Title = Strings.MyProfile;
+}
+
+<table class="table-bordered">
+    <tr>
+        <th>@Strings.Username</th>
+        <td>@Model.UserName</td>
+    </tr>
+    <tr>
+        <th>@Strings.Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>@Strings.Mobile</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>@Strings.DateOfBirth</th>
+        <td>@Model.Birthday</td>
+    </tr>
+    <tr>
+        <th>@Strings.City</th>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <th>@Strings.Country</th>
+        <td>@Model.Country</td>
+    </tr>
+</table>
+
+@Html.ActionLink(Strings.Home, "Index")

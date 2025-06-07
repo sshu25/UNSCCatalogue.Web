@@ -103,5 +103,15 @@ namespace UNSCCatalogue.Web.Controllers
 
             return RedirectToAction("Index", "Accounts");
         }
+
+        public ActionResult MyProfile()
+        {
+            var identityDB = new IdentitydbContext();
+            var userStore = new UserStore(identityDB);
+            var userManager = new UserManager(userStore);
+            User user = userManager.FindById(User.Identity.GetUserId());
+            
+            return View(user);
+        }
     }
 }
