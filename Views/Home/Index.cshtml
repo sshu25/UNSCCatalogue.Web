@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = Strings.Home;
-    ViewBag.Message = "Welcome to UNSC Catalogue" + (User.Identity.IsAuthenticated ? (", " + User.Identity.Name) : "");
+    ViewBag.Message = Strings.WelcomeMessage + (User.Identity.IsAuthenticated ? (", " + User.Identity.Name) : "");
 }
 
 @*@section SideBarOptions

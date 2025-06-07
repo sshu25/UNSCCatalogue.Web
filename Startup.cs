@@ -28,8 +28,10 @@ namespace UNSCCatalogue.Web
             var userStore = new UserStore(db);
             var userManager = new UserManager(userStore);
 
+
+            var adminExists = roleManager.RoleExists("Admin");
             // Create Admin Role
-            if (!roleManager.RoleExists("Admin"))
+            if (!adminExists)
             {
                 var role = new IdentityRole();
                 role.Name = "Admin";

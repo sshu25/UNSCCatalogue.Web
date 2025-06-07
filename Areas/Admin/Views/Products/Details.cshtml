@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutHeader.cshtml";
 }
 
-@Html.ActionLink(Strings.Edit, "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+@Html.ActionLink(Strings.Edit, "Edit", new { id = Model.ID, area = "Admin" }, new { @class = "btn btn-primary" })
 
 <table class="table">
     <tbody>
@@ -43,4 +43,4 @@
     </tbody>
 </table>
 
-<a class="btn btn-danger" href="/Products/Index">@Strings.Return</a>
+<a class="btn btn-danger" href="/Admin/Products/Index">@Strings.Return</a>

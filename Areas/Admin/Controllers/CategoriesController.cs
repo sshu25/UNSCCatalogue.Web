@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using UNSCCatalogue.Web.Models;
 
-namespace UNSCCatalogue.Web.Controllers
+namespace UNSCCatalogue.Web.Areas.Admin.Controllers
 {
     public class CategoriesController : Controller
     {
+        // GET: Admin/Categoriest
         public ActionResult Index()
         {
             UNSCdbContext db = new UNSCdbContext();

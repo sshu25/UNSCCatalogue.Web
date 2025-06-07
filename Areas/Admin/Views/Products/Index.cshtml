@@ -1,0 +1,238 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = Strings.Products;
+    ViewBag.Message = Strings.ViewOfferedProducts;
+}
+
+<div class="btn-group">
+    @Html.ActionLink(Strings.Create, "Create", new { area = "Admin" }, new { @class = "btn btn-primary" })
+</div>
+
+<form class="row g-3" action="/Products/Index">
+    <div class="col-auto">
+        @Html.TextBox(Strings.Search, ViewBag.Search as string, new { @class = "form-control mr-1", placeholder = Strings.Search})
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">@Strings.Search</button>
+    </div>
+</form>
+
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr class="table-secondary">
+                <th style="width:15%">
+                    @Strings.Photo
+                </th>
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=ID&iconClass=fa-sort-asc&pageNo=1">@Strings.ID</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=ID&iconClass=fa-sort-desc&pageNo=1">@Strings.ID</a>
+                    }
+                    @if (ViewBag.SortColumn == "ID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Name&iconClass=fa-sort-asc&pageNo=1">@Strings.Name</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Name&iconClass=fa-sort-desc&pageNo=1">@Strings.Name</a>
+                    }
+                    @if (ViewBag.SortColumn == "Name")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Price&iconClass=fa-sort-asc&pageNo=1">@Strings.Price</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Price&iconClass=fa-sort-desc&pageNo=1">@Strings.Price</a>
+                    }
+                    @if (ViewBag.SortColumn == "Price")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @*ViewBag.SortColumn must match what's defined in the controller, in this case: Category*@
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Category&iconClass=fa-sort-asc&pageNo=1">@Strings.Category</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Category&iconClass=fa-sort-desc&pageNo=1">@Strings.Category</a>
+                    }
+                    @if (ViewBag.SortColumn == "Category")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @*ViewBag.SortColumn must match what's defined in the controller, in this case: Brand*@
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Brand&iconClass=fa-sort-asc&pageNo=1">@Strings.Brand</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=Brand&iconClass=fa-sort-desc&pageNo=1">@Strings.Brand</a>
+                    }
+                    @if (ViewBag.SortColumn == "Brand")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=DateOfPurchase&iconClass=fa-sort-asc&pageNo=1">@Strings.DateOfPurchase</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=DateOfPurchase&iconClass=fa-sort-desc&pageNo=1">@Strings.DateOfPurchase</a>
+                    }
+                    @if (ViewBag.SortColumn == "DateOfPurchase")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=AvailabilityStatus&iconClass=fa-sort-asc&pageNo=1">@Strings.AvailabilityStatus</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Products/Index?sortColumn=AvailabilityStatus&iconClass=fa-sort-desc&pageNo=1">@Strings.AvailabilityStatus</a>
+                    }
+                    @if (ViewBag.SortColumn == "AvailabilityStatus")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                </th>
+                <th>@Strings.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="data:image;base64, @item.Photo" width="100px" /></td>
+                    <td>@Html.DisplayFor(x => item.ID)</td>
+                    <td>@Html.ActionLink(item.Name, "Details", new { area = "Admin" }, new { id = item.ID })</td>
+                    <td>@(item.Price.HasValue ? item.Price.Value.ToString("C") : "")</td>
+                    <td>@Html.DisplayFor(x => item.Category.Name)</td>
+                    <td>@Html.DisplayFor(x => item.Brand.Name)</td>
+                    <td>@(item.DOP.HasValue ? item.DOP.Value.ToString("d/M/yyyy") : "")</td>
+                    <td>@Html.DisplayFor(x => item.AvailabilityStatus)</td>
+                    <td>
+                        @Html.ActionLink(Strings.Details, "Details", new { id = item.ID, area = "Admin" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink(Strings.Edit, "Edit", new { id = item.ID, area = "Admin" }, new { @class = "btn btn-primary" })
+                        <a class="btn btn-primary" id="Delete_@item.ID">@Strings.Delete</a> @*No href as actual POST is on modal confirmation popup*@
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="9">
+                    @{
+                        int prevPage = ViewBag.PageNo - 1;
+                        if (prevPage <= 0)
+                        {
+                            prevPage = 0;
+                        }
+                        int nextPage = ViewBag.PageNo + 1;
+                        if (nextPage > ViewBag.TotalPages)
+                        {
+                            nextPage = ViewBag.TotalPages;
+                        }
+                    }
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/Products/Index?sortColumn=@ViewBag.SortColumn&iconClass=@ViewBag.IconClass&pageNo=@prevPage">
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            if (i == ViewBag.PageNo)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="/Admin/Products/Index?sortColumn=@ViewBag.SortColumn&iconClass=@ViewBag.IconClass&pageNo=@i">@i</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Admin/Products/Index?sortColumn=@ViewBag.SortColumn&iconClass=@ViewBag.IconClass&pageNo=@i">@i</a>
+                                </li>
+                            }
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/Products/Index?sortColumn=@ViewBag.SortColumn&iconClass=@ViewBag.IconClass&pageNo=@nextPage">
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog modal-content">
+        <div class="modal-body">
+            <p>@Strings.DeleteConfirmation</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="deleteYes">@Strings.Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Strings.No</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorDelete">
+    <div class="modal-dialog modal-content">
+        <div class="modal-body">
+            <p>@ErrorMessages.DeleteFailed</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">@Strings.OK</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[id^="Delete_"]').on("click", function () {
+            $('#confirmDelete').modal('toggle');
+            var itemID = $(event.target)[0].id.split("Delete_")[1];
+            document.getElementById('deleteYes').onclick = function () {
+                $.ajax({
+                    url: '/Admin/Products/Delete/' + itemID,
+                    type: 'POST',
+                    success: function (data) {
+                        window.location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        $('#errorDelete').modal('toggle');
+                    }
+                });
+            }
+        });
+    });
+</script>
