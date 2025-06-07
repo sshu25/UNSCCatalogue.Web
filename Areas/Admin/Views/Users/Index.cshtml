@@ -1,0 +1,26 @@
+﻿@model List<UNSCCatalogue.Web.Identity.User>
+@{
+    ViewBag.Message = Strings.Users;
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>@Strings.Username</th>
+        <th>@Strings.Email</th>
+        <th>@Strings.Mobile</th>
+        <th>@Strings.City</th>
+        <th>@Strings.Country</th>
+        <th>@Strings.DateOfBirth</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.City</td>
+            <td>@item.Country</td>
+            <td>@item.Birthday</td>
+        </tr>
+    }
+</table>
