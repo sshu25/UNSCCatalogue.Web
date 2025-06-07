@@ -91,6 +91,10 @@ namespace UNSCCatalogue.Web.Controllers
                 {
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
+                else if (userManager.IsInRole(user.Id, "Manager"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Manager" });
+                }
                 else
                 {
                     return RedirectToAction("Index", "Home");

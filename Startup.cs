@@ -52,8 +52,9 @@ namespace UNSCCatalogue.Web
                 }
             }
 
+            var managerExists = roleManager.RoleExists("Manager");
             // Create Manager Role
-            if (!roleManager.RoleExists("Manager"))
+            if (!managerExists)
             {
                 var role = new IdentityRole();
                 role.Name = "Manager";

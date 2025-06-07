@@ -1,0 +1,55 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Products", new { area = "Manager" }, FormMethod.Post, new { id = Model.ID, enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary()
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.HiddenFor(x => x.ID)
+
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", value = Model.Name })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(x => x.Price)
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control", value = Model.Price })
+            @Html.ValidationMessageFor(x => x.Price)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(x => x.Category)
+            @Html.DropDownListFor(x => x.CategoryID, new SelectList(ViewBag.Categories, "ID", "Name"), Strings.PleaseSelect, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CategoryID)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(x => x.Brand)
+            @Html.DropDownListFor(x => x.BrandID, new SelectList(ViewBag.Brands, "ID", "Name"), Strings.PleaseSelect, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.BrandID)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(x => x.DOP)
+            @Html.TextBoxFor(x => x.DOP, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", placeholder = Strings.DateOfPurchase, value = Model.DOP })
+            @Html.ValidationMessageFor(x => x.DOP)
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.AvailabilityStatus, new { @class = "form-check-input" })
+                @Html.LabelFor(x => x.AvailabilityStatus)
+                @Html.ValidationMessageFor(x => x.AvailabilityStatus)
+            </div>
+        </div>
+        <div class="form-group">
+            <th>@Html.LabelFor(x => x.Photo)</th>
+            <input class="form-control" type="file" name="Photo" value="@Model.Photo">
+            @Html.ValidationMessageFor(x => x.Photo)
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">@Strings.Submit</button>
+            <a class="btn btn-danger" href="javascript:void(0)" onclick="history.go(-1)">@Strings.Cancel</a>
+        </div>
+    </div>
+}

@@ -1,0 +1,46 @@
+﻿@model Product
+@{
+    ViewBag.Title = Strings.Details;
+    Layout = "~/Views/Shared/_LayoutHeader.cshtml";
+}
+
+@Html.ActionLink(Strings.Edit, "Edit", new { id = Model.ID, area = "Manager" }, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>@Html.LabelFor(x => x.Photo)</th>
+            <td><img src="data:image;base64, @Model.Photo" width="100px" /></td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.ID)</th>
+            <td>@Html.DisplayFor(x => x.ID)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.Name)</th>
+            <td>@Html.DisplayFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.Price)</th>
+            <td>@(Model.Price.HasValue ? Model.Price.Value.ToString("C") : "")</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.Category)</th>
+            <td>@Html.DisplayFor(x => x.Category.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.Brand)</th>
+            <td>@Html.DisplayFor(x => x.Brand.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.DOP)</th>
+            <td>@(Model.DOP.HasValue ? Model.DOP.Value.ToString("d/M/yyyy") : "")</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.AvailabilityStatus)</th>
+            <td>@Html.DisplayFor(x => x.AvailabilityStatus)</td>
+        </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-danger" href="/Manager/Products/Index">@Strings.Return</a>
